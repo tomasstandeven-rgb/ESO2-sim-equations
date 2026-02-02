@@ -678,6 +678,15 @@
     }
 
     .hidden { display: none; }
+    
+    /* Guard note for subtraction lines */
+    .subtraction-guard {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      font-style: italic;
+      text-align: center;
+    }
 
     /* ============================================================
       RESPONSIVE BEHAVIOR
@@ -858,33 +867,32 @@
       // Slide 1: Core Knowledge - Eliminating by Subtraction
       {
         timer: null,
-        render: () => renderCoreKnowledge(
-          'Core Knowledge: Eliminating a Variable by Subtraction',
-          [
-            'When solving a pair of simultaneous equations, first form a new equation containing one variable.',
-            'Identify the variable with the same coefficient, ignoring signs.',
-            'If the coefficients have the same sign, subtract one equation from the other.',
-            'Write equations vertically with equals signs aligned.'
-          ],
-          `Obtain a new equation with one variable using the pair of simultaneous equations:<br><br>
-          \\(3x + y = 11\\)<br>
-          \\(2x + y = 8\\)`,
-          
-          `<div style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.6; text-align: center; margin-top: 10px;">
-            \\(
-            \\begin{array}{rcl}
-            3x + y & = & 11 \\\\
-            {\\color{#1f7ed0}{-}} {\\color{#1f7ed0}{(}}2x + y & = & 8{\\color{#1f7ed0}{)}}
-            \\end{array}
-            \\)
-            <div style="border-top: 3px solid #1f7ed0; width: 90%; margin: 5px auto 10px auto;"></div>
-            \\(
-            \\begin{array}{rcl}
-            x & = & 3
-            \\end{array}
-            \\)
-          </div>`
-        )
+        render: () => {
+          const baseContent = renderCoreKnowledge(
+            'Core Knowledge: Eliminating a Variable by Subtraction',
+            [
+              'When solving a pair of simultaneous equations, first form a new equation containing one variable.',
+              'Identify the variable with the same coefficient, ignoring signs.',
+              'If the coefficients have the same sign, subtract one equation from the other.',
+              'Write equations vertically with equals signs aligned.'
+            ],
+            `Obtain a new equation with one variable using the pair of simultaneous equations:<br><br>
+            \\(3x + y = 11\\)<br>
+            \\(2x + y = 8\\)`,
+            
+            `<div style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.6; text-align: center; margin-top: 10px;">
+              \\(
+              \\begin{array}{rcl}
+              3x + y &=& 11 \\\\
+              {\\color{#1f7ed0}{-}} {\\color{#1f7ed0}{(}}2x + y &=& 8{\\color{#1f7ed0}{)}} \\\\
+              \\hline
+              x &=& 3
+              \\end{array}
+              \\)
+            </div>`
+          );
+          return baseContent + `<div class="subtraction-guard">The subtraction line must align with the same left and right boundaries as the equations above. Do not shorten or center it.</div>`;
+        }
       },
 
       // Slide 2: Examples - Eliminating by Subtraction
@@ -960,32 +968,31 @@
       // Slide 5: Core Knowledge - Eliminating by Addition
       {
         timer: null,
-        render: () => renderCoreKnowledge(
-          'Core Knowledge: Eliminating a Variable by Addition',
-          [
-            'Identify the variable with the same coefficient in both equations.',
-            'If the coefficients have opposite signs, add the equations.',
-            'Adding the equations eliminates one variable.'
-          ],
-          `Obtain a new equation with one variable using the pair of simultaneous equations:<br><br>
-          \\(3p + 20q = -7\\)<br>
-          \\(2p - 20q = 15\\)`,
-          
-          `<div style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.6; text-align: center; margin-top: 10px;">
-            \\(
-            \\begin{array}{rcl}
-            3p + 20q & = & -7 \\\\
-            {\\color{#1f7ed0}{+}} {\\color{#1f7ed0}{(}}2p - 20q & = & 15{\\color{#1f7ed0}{)}}
-            \\end{array}
-            \\)
-            <div style="border-top: 3px solid #1f7ed0; width: 90%; margin: 5px auto 10px auto;"></div>
-            \\(
-            \\begin{array}{rcl}
-            5p & = & 8
-            \\end{array}
-            \\)
-          </div>`
-        )
+        render: () => {
+          const baseContent = renderCoreKnowledge(
+            'Core Knowledge: Eliminating a Variable by Addition',
+            [
+              'Identify the variable with the same coefficient in both equations.',
+              'If the coefficients have opposite signs, add the equations.',
+              'Adding the equations eliminates one variable.'
+            ],
+            `Obtain a new equation with one variable using the pair of simultaneous equations:<br><br>
+            \\(3p + 20q = -7\\)<br>
+            \\(2p - 20q = 15\\)`,
+            
+            `<div style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.6; text-align: center; margin-top: 10px;">
+              \\(
+              \\begin{array}{rcl}
+              3p + 20q &=& -7 \\\\
+              {\\color{#1f7ed0}{+}} {\\color{#1f7ed0}{(}}2p - 20q &=& 15{\\color{#1f7ed0}{)}} \\\\
+              \\hline
+              5p &=& 8
+              \\end{array}
+              \\)
+            </div>`
+          );
+          return baseContent + `<div class="subtraction-guard">The subtraction line must align with the same left and right boundaries as the equations above. Do not shorten or center it.</div>`;
+        }
       },
 
       // Slide 6: Examples - Eliminating by Addition
@@ -1072,24 +1079,20 @@
           <div style="font-family: 'Times New Roman', Times, serif; font-size: 28px; line-height: 1.8; margin-top: 15px;">
             <strong>a)</strong> 
             \\(
-            \\left\\{
-            \\begin{array}{rcl}
-            4x - 3y & = & 23 \\\\
-            2x + 3y & = & 19
-            \\end{array}
-            \\right.
+            \\left\\{\\begin{aligned}
+            4x - 3y &= 23 \\\\
+            2x + 3y &= 19
+            \\end{aligned}\\right.
             \\)
           </div>
           <div style="height: 40px;"></div>
           <div style="font-family: 'Times New Roman', Times, serif; font-size: 28px; line-height: 1.8; margin-top: 15px;">
             <strong>b)</strong> 
             \\(
-            \\left\\{
-            \\begin{array}{rcl}
-            4x + 3y & = & 23 \\\\
-            2x + 3y & = & 19
-            \\end{array}
-            \\right.
+            \\left\\{\\begin{aligned}
+            4x + 3y &= 23 \\\\
+            2x + 3y &= 19
+            \\end{aligned}\\right.
             \\)
           </div>`,
           
@@ -1171,33 +1174,32 @@
       // Slide 13: Core Knowledge - Scaling Equations
       {
         timer: null,
-        render: () => renderCoreKnowledge(
-          'Core Knowledge: Scaling Equations to Match Coefficients',
-          [
-            'If coefficients do not match, multiply one or both equations.',
-            'Scaling creates matching coefficients.',
-            'The equations can then be added or subtracted.'
-          ],
-          `Find an equation with one variable using the pair of simultaneous equations:<br><br>
-          \\(5x + 2y = 20 \\quad ①\\)<br>
-          \\(2x + 4y = 24 \\quad ②\\)`,
-          
-          `<span style="color: #000;">Multiply ① by 2:</span><br>
-          <div style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.6; text-align: center; margin-top: 10px;">
-            \\(
-            \\begin{array}{rcl}
-            10x + 4y & = & 40 \\\\
-            {\\color{#1f7ed0}{-}} {\\color{#1f7ed0}{(}}2x + 4y & = & 24{\\color{#1f7ed0}{)}}
-            \\end{array}
-            \\)
-            <div style="border-top: 3px solid #1f7ed0; width: 90%; margin: 5px auto 10px auto;"></div>
-            \\(
-            \\begin{array}{rcl}
-            8x & = & 16
-            \\end{array}
-            \\)
-          </div>`
-        )
+        render: () => {
+          const baseContent = renderCoreKnowledge(
+            'Core Knowledge: Scaling Equations to Match Coefficients',
+            [
+              'If coefficients do not match, multiply one or both equations.',
+              'Scaling creates matching coefficients.',
+              'The equations can then be added or subtracted.'
+            ],
+            `Find an equation with one variable using the pair of simultaneous equations:<br><br>
+            \\(5x + 2y = 20 \\quad ①\\)<br>
+            \\(2x + 4y = 24 \\quad ②\\)`,
+            
+            `<span style="color: #000;">Multiply ① by 2:</span><br>
+            <div style="font-family: 'Times New Roman', Times, serif; font-size: 32px; line-height: 1.6; text-align: center; margin-top: 10px;">
+              \\(
+              \\begin{array}{rcl}
+              10x + 4y &=& 40 \\\\
+              {\\color{#1f7ed0}{-}} {\\color{#1f7ed0}{(}}2x + 4y &=& 24{\\color{#1f7ed0}{)}} \\\\
+              \\hline
+              8x &=& 16
+              \\end{array}
+              \\)
+            </div>`
+          );
+          return baseContent + `<div class="subtraction-guard">The subtraction line must align with the same left and right boundaries as the equations above. Do not shorten or center it.</div>`;
+        }
       },
 
       // Slide 14: Examples - Scaling Equations
@@ -1294,10 +1296,12 @@
                   3x - 4y &= 6 \\quad \\text{①} \\\\
                   x + 3y &= 15 \\quad \\text{②} \\\\[6pt]
                   \\text{multiply ② by 3:} \\\\
-                  3x - 4y &= 6  \\\\
-                  {\\color{#1f7ed0}{-}} {\\color{#1f7ed0}{(}}3x + 9y &= 45{\\color{#1f7ed0}{)}} \\\\
-                  {\\color{#1f7ed0}{\\rule{8cm}{2px}}} \\\\
-                  -13y &= -39 \\\\
+                  \\begin{array}{rcl}
+                  3x - 4y &=& 6  \\\\
+                  {\\color{#1f7ed0}{-}} {\\color{#1f7ed0}{(}}3x + 9y &=& 45{\\color{#1f7ed0}{)}} \\\\
+                  \\hline
+                  -13y &=& -39
+                  \\end{array} \\\\[6pt]
                   \\frac{-13y}{{\\color{#1f7ed0}{-13}}} &= \\frac{-39}{{\\color{#1f7ed0}{-13}}} \\\\ 
                   y &= 3\\\\[6pt]
                   \\text{substitute into ②:} \\\\
@@ -1309,6 +1313,9 @@
                   \\boxed{x = 6, \\, y = 3}
                 \\end{aligned}
                 \\)
+              </div>
+              <div class="subtraction-guard">
+                The subtraction line must align with the same left and right boundaries as the equations above. Do not shorten or center it.
               </div>
             </div>
 
